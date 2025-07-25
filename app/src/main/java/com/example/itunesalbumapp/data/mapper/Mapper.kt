@@ -10,6 +10,8 @@ fun EntryDto.toEntity(): AlbumEntity = AlbumEntity(
     artist = artist.label,
     imageUrl = images.firstOrNull()?.url ?: "",
     price = price?.label ?: "",
+    copyright = rights?.label ?: "",
+    genre = category.attributes.label,
     releaseDate = releaseDate.date,
     link = link.attributes.href
 )
@@ -21,5 +23,7 @@ fun AlbumEntity.toDomain(): Album = Album(
     imageUrl = imageUrl,
     price = price,
     releaseDate = releaseDate,
+    copyright = copyright,
+    genre = genre,
     link = link
 )

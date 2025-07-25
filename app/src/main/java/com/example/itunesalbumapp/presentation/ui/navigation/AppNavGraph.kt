@@ -1,6 +1,5 @@
 package com.example.itunesalbumapp.presentation.ui.navigation
 
-
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -34,7 +33,8 @@ fun AppNavGraph(
                 onAlbumClick = { album ->
                     val encodedJson = URLEncoder.encode(Gson().toJson(album), "utf-8")
                     navController.navigate(Screen.AlbumDetail.createRoute(encodedJson))
-                }
+                },
+                paddingValues = innerPadding
             )
         }
 
@@ -47,7 +47,9 @@ fun AppNavGraph(
 
             character?.let {
                 AlbumDetailScreen(
-                    album = it
+                    album = it,
+                    onNavigateUp = { navController.navigateUp() },
+                    paddingValues = innerPadding
                 )
             }
         }

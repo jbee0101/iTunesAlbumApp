@@ -11,5 +11,7 @@ data class AlbumEntity(
     val imageUrl: String,
     val price: String,
     val releaseDate: String,
+    val copyright: String,
+    val genre: String,
     val link: String
 )
