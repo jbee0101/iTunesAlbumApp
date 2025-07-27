@@ -13,10 +13,22 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
+/**
+ * Implementation of [AlbumRepository] that retrieves albums from the remote API and the local database.
+ *
+ * @property api The [AlbumApiService] for retrieving data from the remote API.
+ * @property db The [AlbumDatabase] for retrieving data from the local database.
+ */
 class AlbumRepositoryImpl @Inject constructor(
     private val api: AlbumApiService,
     private val db: AlbumDatabase
 ) : AlbumRepository {
+
+    /**
+     * Retrieves a flow of albums from the remote API and the local database.
+     *
+     * @return A flow of [List] of [Album].
+     */
     override suspend fun getAlbums(): Flow<List<Album>> = flow {
         val local = db.albumDao().getAll().firstOrNull()
         if (local.isNullOrEmpty()) {

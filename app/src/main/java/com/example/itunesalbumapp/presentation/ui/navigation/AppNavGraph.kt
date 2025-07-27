@@ -17,6 +17,12 @@ import com.example.itunesalbumapp.presentation.viewmodel.AlbumListViewModel
 import com.google.gson.Gson
 import java.net.URLEncoder
 
+/**
+ * Represents the navigation graph for the app.
+ *
+ * @param navController The [NavHostController] for navigation.
+ * @param innerPadding The padding values for the inner content.
+ */
 @Composable
 fun AppNavGraph(
     navController: NavHostController,

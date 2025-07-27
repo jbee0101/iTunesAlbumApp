@@ -4,6 +4,11 @@ import com.example.itunesalbumapp.data.local.AlbumEntity
 import com.example.itunesalbumapp.data.remote.EntryDto
 import com.example.itunesalbumapp.domain.model.Album
 
+/**
+ * Converts an [EntryDto] to an [AlbumEntity].
+ *
+ * @return The converted [AlbumEntity].
+ */
 fun EntryDto.toEntity(): AlbumEntity = AlbumEntity(
     id = id.attributes.id,
     name = name.label,
@@ -16,6 +21,11 @@ fun EntryDto.toEntity(): AlbumEntity = AlbumEntity(
     link = link.attributes.href
 )
 
+/**
+ * Converts an [AlbumEntity] to a [Album].
+ *
+ * @return The converted [Album].
+ */
 fun AlbumEntity.toDomain(): Album = Album(
     id = id,
     name = name,

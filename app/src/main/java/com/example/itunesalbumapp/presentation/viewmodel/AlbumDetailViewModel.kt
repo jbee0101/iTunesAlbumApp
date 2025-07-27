@@ -11,6 +11,11 @@ import kotlinx.coroutines.flow.StateFlow
 import java.net.URLDecoder
 import javax.inject.Inject
 
+/**
+ * ViewModel for the album detail screen.
+ *
+ * @param savedStateHandle The saved state handle for this ViewModel.
+ */
 @HiltViewModel
 class AlbumDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
@@ -19,6 +24,9 @@ class AlbumDetailViewModel @Inject constructor(
     private val _album = MutableStateFlow<Album?>(null)
     val album: StateFlow<Album?> = _album
 
+    /**
+     * Initializes the ViewModel with the album data from the saved state handle.
+     */
     init {
         savedStateHandle.get<String>("album")?.let { encodedJson ->
             try {

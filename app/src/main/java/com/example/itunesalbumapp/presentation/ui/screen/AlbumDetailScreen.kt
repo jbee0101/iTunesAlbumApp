@@ -45,6 +45,13 @@ import coil.compose.AsyncImage
 import com.example.itunesalbumapp.domain.model.Album
 import androidx.core.net.toUri
 
+/**
+ * Represents the detail screen for an album.
+ *
+ * @param album The album to be displayed.
+ * @param onNavigateUp The callback to navigate back.
+ * @param paddingValues The padding values for the screen.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AlbumDetailScreen(
@@ -156,6 +163,13 @@ fun AlbumDetailScreen(
     }
 }
 
+/**
+ * Represents a row in the detail screen.
+ *
+ * @param icon The icon to be displayed.
+ * @param label The label to be displayed.
+ * @param value The value to be displayed.
+ */
 @Composable
 fun DetailInfoRow(icon: ImageVector, label: String, value: String) {
     Row(

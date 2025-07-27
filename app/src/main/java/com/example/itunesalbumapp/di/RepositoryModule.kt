@@ -10,16 +10,26 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * Module that provides dependencies for the repository.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
+    /**
+     * Provides an instance of [AlbumRepository].
+     *
+     * @param albumApiService The [AlbumApiService] instance.
+     * @param appDatabase The [AlbumDatabase] instance.
+     * @return The [AlbumRepository] instance.
+     */
     @Provides
     @Singleton
     fun provideAlbumRepository(
-        rickMortyApi: AlbumApiService,
+        albumApiService: AlbumApiService,
         appDatabase: AlbumDatabase
     ): AlbumRepository {
-        return AlbumRepositoryImpl(rickMortyApi, appDatabase)
+        return AlbumRepositoryImpl(albumApiService, appDatabase)
     }
 }

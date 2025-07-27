@@ -13,26 +13,50 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel for the album list screen.
+ *
+ * @param getAlbumsUseCase The use case for fetching albums.
+ */
 @HiltViewModel
 class AlbumListViewModel @Inject constructor(
     private val getAlbumsUseCase: GetAlbumsUseCase
 ) : ViewModel() {
 
-    private var _album = MutableStateFlow<List<Album>>(emptyList())
-    val album: StateFlow<List<Album>?> = _album
+    private var _isRefreshing = MutableStateFlow(false)
 
     private val _uiState = MutableStateFlow<UiState<List<Album>>>(UiState.Loading)
     val uiState: StateFlow<UiState<List<Album>>> = _uiState
 
 
     init {
+        fetchAlbums()
+    }
+
+    /**
+     * Fetches albums from the use case and updates the UI state accordingly.
+     */
+    private fun fetchAlbums() {
         viewModelScope.launch {
             getAlbumsUseCase.invoke()
                 .catch {
                     Log.e("AlbumListViewModel", "Error fetching albums", it)
                 }.collect {
                     _uiState.value = it
-            }
+                }
+        }
+    }
+
+    /**
+     * Refreshes the albums by fetching them again.
+     */
+    fun refreshAlbums() {
+        if (_isRefreshing.value) return
+
+        viewModelScope.launch {
+            _isRefreshing.value = true
+            fetchAlbums()
+            _isRefreshing.value = false
         }
     }
 }

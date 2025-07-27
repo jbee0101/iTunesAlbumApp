@@ -12,8 +12,17 @@ import com.example.itunesalbumapp.presentation.ui.navigation.AppNavGraph
 import com.example.itunesalbumapp.ui.theme.ITunesAlbumAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Main activity for the application.
+ */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    /**
+     * Called when the activity is starting.
+     *
+     * @param savedInstanceState The previously saved state, if any.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
